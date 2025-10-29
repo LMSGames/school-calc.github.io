@@ -1,14 +1,18 @@
+/*
+	CSGOClicker - Case CSGOClicker
+	money, inventory, jackpot
+
+	Type 'EOFL' to skip the item list
+*/
 // CSGOClicker - Case CSGOClicker
 //money, inventory, jackpot
 
-import {test_default_money} from "./test.js"
+let itemCounter = 0;
+const fps = 15;
 
-var itemCounter = 0;
-var fps = 15;
-
-var money = test_default_money || 7.50;
-var currentCase = "case1";
-var acceptMoneyPerClick = 0.1;
+let money = 7.50;
+let currentCase = "case1";
+let acceptMoneyPerClick = 0.1;
 
 /*=========================Inventory============================*/
 //In inventory: weap skins
@@ -28,6 +32,15 @@ var keyPrice = 2.50;
 
 var caseDiscount = 0;
 var keyDiscount = 0;
+
+/* Utility function for creating a new case */
+function make_purchasable(item_name, price, img) {
+	return {
+		name: item_name,
+		price: price,
+		img: img
+	}
+}
 
 var operationCases = {
   case1: {name: "Weapon Case 1", price: 6.90, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQNqhpOSV-fRPasw8rsRVx4MwFo5_T3eAQ3i6DMIW0X7ojiwoHax6egMOKGxj4G68Nz3-jCp4itjFWx-ktqfSmtcwqVx6sT"},
@@ -15186,23 +15199,19 @@ var cases = {
   }
 };
 
+// EOFL
 
 /*===============STATISTICS===============*/
-var totalMoneySpent = 0;
-var totalCasesOpened = 0;
-var totalBluesOpened = 0;
-var totalPurplesOpened = 0;
-var totalPinksOpened = 0;
-var totalRedsOpened = 0;
-var totalKnivesOpened = 0;
+let totalMoneySpent = 0;
+let totalCasesOpened = 0;
+let totalBluesOpened = 0;
+let totalPurplesOpened = 0;
+let totalPinksOpened = 0;
+let totalRedsOpened = 0;
+let totalKnivesOpened = 0;
 
 
 /*===============LOGIC===============*/
-
-function beatboy() {
-  money = 5000;
-  inventoryMax = 200;
-}
 
 //cases -> case# -> rarity  -> weaponname, price, img
 //cases -> case1 -> milspec -> weap1.name
@@ -15624,6 +15633,7 @@ $(".stackingUpgradeContainer").on("click", ".upgrade", function() {
   $("#" + this.id).find(".upgradeAmount").html(stackingUpgradesPurchased[this.id]);
 });
 
+/* EOFL | UPGRADES */
 
 var stackingUpgrades = {
   upgrade1: {name: "Inventory Space", desc: "+1 to your max inventory space.", basePrice: 15, price: 15, cp: 0.00, kp: 0.00, is: 1, mc: 0.00, img: "https://steamcommunity-a.akamaihd.net/economy/image/U8721VM9p9C2v1o6cKJ4qEnGqnE7IoTQgZI-VTdwyTBeimAcIoxXpgK8bPeslY9pPJIvB5IWW2-452kaM8heLSRgleGAr7BMx-94b6MohOf-Xwsn7-USVDXgHhOG1zPDeLmsxwRtYpItIUb2wskZ6I0FWp9DdsKkOtQslw/100fx100f"},
@@ -15638,10 +15648,7 @@ var stackingUpgradesPurchased = {
   upgrade3: 0
 };
 
-function drawPermUpgradeContainer() {
-
-}
-
+/* Function for drawing the upgrades interface */
 function drawStackingUpgrades() {
   for (var upgrade in stackingUpgrades) {
     if (stackingUpgrades.hasOwnProperty(upgrade)) {
@@ -16416,9 +16423,6 @@ function audioubmute(){
     audio.volume = 0.0; 
 }
 
-
-
-
 var audio = document.getElementById('startgame');
 var audio = document.getElementById('botentered');
 var audio = document.getElementById('youwon');
@@ -16466,100 +16470,8 @@ var x =  prompt("Enter a Value","0")
 	}
 }
 
-/*==============================================================================
-Canvas
+/* EOFL | INITIATION */
 
-==============================================================================*/
-/*
-// "+1" popups
-var canvas = document.getElementById("drawing");
-var ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth - $('.right').width();
-canvas.height = window.innerHeight;
-var tt = [];
-function makeToolTip(element, ) {
-}
-*/
-
-
-/*
-$("#case").click(function() {
-  var randX = Math.floor(Math.random() * 240);
-  var randY = Math.floor(Math.random() * 180);
-  var text = "+ $" + moneyPC;
-  var alpha = 1.0;
-  var interval = setInterval(function () {
-    ctx.save();
-    canvas.width = canvas.width;
-    ctx.fillStyle = "rgba(255, 0, 0, " + alpha + ")";
-    ctx.font = "20px Georgia";
-    ctx.fillText(text, randX, randY);
-    alpha -= 0.05;
-    if (alpha < 0) {
-      canvas.width = canvas.width;
-      clear(interval);
-    }
-    ctx.restore();
-  }, 50);
-});
-*/
-
-
-/*
-var fps = 1000 / 60;
-var degrees = 0;
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth - $('.right').width();
-canvas.height = window.innerHeight;
-function drawBackground() {
-  var image = new Image();
-  image.onload = function() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.save();
-    ctx.translate(canvas.width / 2, canvas.height / 2);
-    ctx.rotate(degrees * Math.PI / 180);
-    ctx.drawImage(image, -image.width / 2, -image.height / 2);
-    ctx.restore();
-    degrees += 0.1;
-    setTimeout(drawBackground, fps);
-    //requestFrameAnimation(drawBackground);
-  }
-   image.src = "images/sunburst.png";
-}
-function drawCase() {
-  var image = new Image();
-  image.onload = function() {
-    ctx.drawImage(image, canvas.width / 2 - image.width / 2, canvas.height / 2 - image.height / 2);
-  }
-  image.src = "images/case.png";
-}
-function drawOrder() {
-  drawBackground();
-}
-drawOrder();
-*/
-/*function openCity(evt, cityName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the link that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-*/
 function init() {
   loadGameState();
   caseInfo();
