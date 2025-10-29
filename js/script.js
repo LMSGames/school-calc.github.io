@@ -5,6 +5,8 @@
 	Type 'EOFL' for shortcuts to important parts of code
 */
 
+// EOFL-TOP
+
 // ********************************************************************
 // Constants 
 // ********************************************************************
@@ -17,17 +19,45 @@ const DEFAULT_INVENTORY_MAX_ITEMS = 50;
 const DEFAULT_KEY_PRICE = 2.50;
 
 // ********************************************************************
+// Cash variables
+// ********************************************************************
 
 let itemCounter = 0;
-
 let money = DEFAULT_MONEY;
 let currentCase = DEFAULT_CASE;
 let acceptMoneyPerClick = DEFAULT_MONEY_PER_CLICK;
 
-/*=========================Inventory============================*/
-//In inventory: weap skins
-//Hidden: money
-//sorting: by money, rarity
+// Statistic variables
+let totalMoneySpent = 0;
+let totalCasesOpened = 0;
+let totalBluesOpened = 0;
+let totalPurplesOpened = 0;
+let totalPinksOpened = 0;
+let totalRedsOpened = 0;
+let totalKnivesOpened = 0;
+
+// ********************************************************************
+// Rarity values
+// ********************************************************************
+
+//cases -> case# -> rarity  -> weaponname, price, img
+//cases -> case1 -> milspec -> weap1.name
+//blues = 70%, purple = 20%, pink = 5%, red = 2.50%, knife = 0.50%
+
+var rarityValue = {
+  milspec: 0.75,
+  restricted: 0.92,
+  classified: 0.97,
+  stattrak: 0.98,
+  covert: 0.995
+};
+
+// ********************************************************************
+// Inventory variables
+//	* In inventory: weap skins
+//	* Hidden: money
+//	* sorting: by money, rarity
+// ********************************************************************
 
 var popup = true;
 
@@ -41,6 +71,10 @@ var keyPrice = DEFAULT_KEY_PRICE;
 
 var caseDiscount = 0;
 var keyDiscount = 0;
+
+// ********************************************************************
+// Item data
+// ********************************************************************
 
 /* Utility function for creating a new case */
 function make_purchasable(item_name, price, img) {
@@ -15223,30 +15257,6 @@ var cases = {
 
 // EOFL
 
-/*===============STATISTICS===============*/
-let totalMoneySpent = 0;
-let totalCasesOpened = 0;
-let totalBluesOpened = 0;
-let totalPurplesOpened = 0;
-let totalPinksOpened = 0;
-let totalRedsOpened = 0;
-let totalKnivesOpened = 0;
-
-
-/*===============LOGIC===============*/
-
-//cases -> case# -> rarity  -> weaponname, price, img
-//cases -> case1 -> milspec -> weap1.name
-
-//blues = 70%, purple = 20%, pink = 5%, red = 2.50%, knife = 0.50%
-
-var rarityValue = {
-  milspec: 0.75,
-  restricted: 0.92,
-  classified: 0.97,
-  stattrak: 0.98,
-  covert: 0.995
-};
 
 function randSkin() {
      var skinsArray = [];
