@@ -21,6 +21,8 @@ let itemCounter = 0;
 let money = DEFAULT_MONEY;
 let currentCase = DEFAULT_CASE;
 let acceptMoneyPerClick = DEFAULT_MONEY_PER_CLICK;
+const DEFAULT_INVENTORY_MAX_ITEMS = 50;
+const DEFAULT_KEY_PRICE = 2.50;
 
 /*=========================Inventory============================*/
 //In inventory: weap skins
@@ -33,10 +35,10 @@ var popup = true;
 var inventory = {};
 var jackpotInventory = {};
 
-var inventoryMax = 50;
+var inventoryMax = DEFAULT_INVENTORY_MAX_ITEMS;
 var inventoryCurrent = 0;
 
-var keyPrice = 2.50;
+var keyPrice = DEFAULT_KEY_PRICE;
 
 var caseDiscount = 0;
 var keyDiscount = 0;
