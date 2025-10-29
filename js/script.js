@@ -10,9 +10,11 @@
 // ********************************************************************
 
 const fps = 15;
-const DEFAULT_MONEY = 7.5;
+const DEFAULT_MONEY = 7.50;
 const DEFAULT_CASE = "case1";
 const DEFAULT_MONEY_PER_CLICK = 0.1;
+const DEFAULT_INVENTORY_MAX_ITEMS = 50;
+const DEFAULT_KEY_PRICE = 2.50;
 
 // ********************************************************************
 
@@ -21,15 +23,12 @@ let itemCounter = 0;
 let money = DEFAULT_MONEY;
 let currentCase = DEFAULT_CASE;
 let acceptMoneyPerClick = DEFAULT_MONEY_PER_CLICK;
-const DEFAULT_INVENTORY_MAX_ITEMS = 50;
-const DEFAULT_KEY_PRICE = 2.50;
 
 /*=========================Inventory============================*/
 //In inventory: weap skins
 //Hidden: money
-
-
 //sorting: by money, rarity
+
 var popup = true;
 
 var inventory = {};
@@ -50,6 +49,18 @@ function make_purchasable(item_name, price, img) {
 		price: price,
 		img: img
 	}
+}
+
+function make_purchasable_knife(knife_type, knife_name, price, img) {
+	const say_knife_name = knife_name !== null;
+	let formatted_name = `✯ ${knife_type} | ${knife_name}`
+	if (!say_knife_name) {
+		formatted_name = formatted_name = `✯ ${knife_type}`
+	}
+	
+	// return the purchasable from the formatted name
+	let result = make_purchasable(formatted_name, price, img)
+	return result
 }
 
 var operationCases = {
@@ -77,7 +88,8 @@ var operationCases = {
 
 var knives = {
   regular: {
-	knife1: {name: "✯ Bayonet", price: 168.73, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQh5hlcX0nvUOGsx8DdQBJjIAVHubSaKQZ53P3NZXMXvYmykdLSxqWkZ7-HkjMIvpIj3u2Y84733gzh_RU_MG_zIYLEdQ45fxiOrdJh0ExF"},
+	knife1: make_purchasable_knife("Bayonet", null, 168.73, ""),
+	//knife1: {name: "✯ Bayonet", price: 168.73, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXU5A1PIYQh5hlcX0nvUOGsx8DdQBJjIAVHubSaKQZ53P3NZXMXvYmykdLSxqWkZ7-HkjMIvpIj3u2Y84733gzh_RU_MG_zIYLEdQ45fxiOrdJh0ExF"},
 	knife2: {name: "✯ Bayonet | Blue Steel BS", price: 120.75, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLu8JAllx8zJYAJA4MmzkL-DkvbiKoTdl3lW7Ytzj7HFpIr3jQTiqEptYDjzcIeWJgI4YF_Z_Fm7lOvnjJbquJXKmiMypGB8sl3Uv6q3"},
 	knife3: {name: "✯ Bayonet | Blue Steel WW", price: 129.79, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLu8JAllx8zJYAJA4MmzkL-GkvP9JrbummpD78A_37vEp4rz3w21_hBrNWD7dteSeg8_M1jSrFK5wrrr18Xpu5TAwHNmsj5iuyhFiVGqLA"},
 	knife4: {name: "✯ Bayonet | Blue Steel FT", price: 139.42, img: "https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpotLu8JAllx8zJYAJA4MmzkL-GkvP9JrbummpD78A_37vEp4rz3w21_hBrNWD7dteSeg8_M1jSrFK5wrrr18Xpu5TAwHNmsj5iuyhFiVGqLA"},
