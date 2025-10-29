@@ -15257,40 +15257,41 @@ var cases = {
 
 // EOFL
 
-function get_rarity_from_number(number) {
-	let rarity = "knife";
-	if (number <= rarityValue.milspec) {
-		rarity = "milspec";
-	} else if (number >= rarityValue.milspec && number <= rarityValue.restricted) {
-		rarity = "restricted";
-	} else if (number >= rarityValue.restricted && number <= rarityValue.stattrak) {
-		rarity = "stattrak";
-	} else if (number >= rarityValue.stattrak && number <= rarityValue.covert) {
-		rarity = "covert;
-	}
-	return rarity;
-}
+// function get_rarity_from_number(number) {
+// 	let rarity = "knife";
+// 	if (number <= rarityValue.milspec) {
+// 		rarity = "milspec";
+// 	} else if (number >= rarityValue.milspec && number <= rarityValue.restricted) {
+// 		rarity = "restricted";
+// 	} else if (number >= rarityValue.restricted && number <= rarityValue.stattrak) {
+// 		rarity = "stattrak";
+// 	} else if (number >= rarityValue.stattrak && number <= rarityValue.covert) {
+// 		rarity = "covert;
+// 	}
+// 	return rarity;
+// }
 
 function randSkin() {
      var skinsArray = [];
      var randSkin = "";
      var randNum = Math.random().toFixed(3); //rounded to 3 places to make it slightly easier to get certain rarities
-     var rarity = get_rarity_from_number(randNum);
-     var identifier;
+     // var rarity = get_rarity_from_number(randNum);
+    let rarity = "" 
+	var identifier;
 	 
-     // if (randNum <= rarityValue.milspec) {
-     //   rarity = "milspec";
-     // } else if (randNum >= rarityValue.milspec && randNum <= rarityValue.restricted) {
-     //   rarity = "restricted";
-     // } else if (randNum >= rarityValue.restricted && randNum <= rarityValue.classified) {
-     //   rarity = "classified";
-     // } else if (randNum >= rarityValue.classified && randNum <= rarityValue.stattrak) {
-     //   rarity = "stattrak";
-     // } else if (randNum >= rarityValue.stattrak && randNum <= rarityValue.covert) {
-     //   rarity = "covert";
-     // } else {
-     //   rarity = "knife";
-     // }
+     if (randNum <= rarityValue.milspec) {
+       rarity = "milspec";
+     } else if (randNum >= rarityValue.milspec && randNum <= rarityValue.restricted) {
+       rarity = "restricted";
+     } else if (randNum >= rarityValue.restricted && randNum <= rarityValue.classified) {
+       rarity = "classified";
+     } else if (randNum >= rarityValue.classified && randNum <= rarityValue.stattrak) {
+       rarity = "stattrak";
+     } else if (randNum >= rarityValue.stattrak && randNum <= rarityValue.covert) {
+       rarity = "covert";
+     } else {
+       rarity = "knife";
+     }
 
      function skinChoose(r) {
        if (r === "knife") {
@@ -15387,10 +15388,8 @@ function randSkin() {
 }
 
 function itemDisp(name, price, img) {
-  var temp = [];
-
+  let temp = [];
   temp.push(name, price, img);
-  //console.log(temp);
   return temp;
 }
 
