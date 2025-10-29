@@ -10,7 +10,7 @@
 let itemCounter = 0;
 const fps = 15;
 
-let money = 7.50;
+let money = test_default_money;
 let currentCase = "case1";
 let acceptMoneyPerClick = 0.1;
 
