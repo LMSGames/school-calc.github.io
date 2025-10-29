@@ -2,17 +2,25 @@
 	CSGOClicker - Case CSGOClicker
 	money, inventory, jackpot
 
-	Type 'EOFL' to skip the item list
+	Type 'EOFL' for shortcuts to important parts of code
 */
-// CSGOClicker - Case CSGOClicker
-//money, inventory, jackpot
+
+// ********************************************************************
+// Constants 
+// ********************************************************************
+
+const fps = 15;
+const DEFAULT_MONEY = 7.5;
+const DEFAULT_CASE = "case1";
+const DEFAULT_MONEY_PER_CLICK = 0.1;
+
+// ********************************************************************
 
 let itemCounter = 0;
-const fps = 15;
 
-let money = test_default_money;
-let currentCase = "case1";
-let acceptMoneyPerClick = 0.1;
+let money = DEFAULT_MONEY;
+let currentCase = DEFAULT_CASE;
+let acceptMoneyPerClick = DEFAULT_MONEY_PER_CLICK;
 
 /*=========================Inventory============================*/
 //In inventory: weap skins
