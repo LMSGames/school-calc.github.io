@@ -15826,11 +15826,12 @@ var jackpotAI = {
   bot27: ["DennyB", 8, "https://i.imgur.com/VNE57CT.jpg"],
   bot28: ["Bio", 8, "https://i.imgur.com/acTRiBk.jpg"],
   bot29: ["Tiny", 8, "https://i.imgur.com/2aOas2H.jpg"],
-  bot30: ["King of KFC Jamal", 9, "https://i.imgur.com/XhFlH2S.jpg"]
+  bot30: ["King of KFC Jamal", 9, "https://i.imgur.com/XhFlH2S.jpg"],
+  bot31: ["Peyton Zielke", 5, ""],
 };
 
 var jackpotPots = {
-  low: ["bot1", "bot2", "bot3", "bot4", "bot5", "bot6", "bot7", "bot8", "bot9"],
+  low: ["bot1", "bot2", "bot3", "bot4", "bot5", "bot6", "bot7", "bot8", "bot9", "bot31"],
   medium: ["bot10", "bot11", "bot12", "bot13", "bot14", "bot15", "bot16", "bot17", "bot18", "bot19"],
   high: ["bot20", "bot21", "bot22", "bot23", "bot24", "bot25", "bot26", "bot27", "bot28", "bot29", "bot30"]
 }
@@ -15910,7 +15911,8 @@ function jackpotStart() {
     bot27: 0,
     bot28: 0,
     bot29: 0,
-    bot30: 0
+    bot30: 0,
+	bot31: 0
   };
   var playerTickets = 0;
   var totalTickets = 0;
