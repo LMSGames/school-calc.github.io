@@ -5,14 +5,11 @@
 	Type 'EOFL' for shortcuts to important parts of code
 */
 
-import { hi } from "./test.js"
-
 // EOFL-TOP
 
 // ********************************************************************
 // Constants 
 // ********************************************************************
-hi();
 const fps = 15;
 const DEFAULT_MONEY = 7.50;
 const DEFAULT_CASE = "case1";
